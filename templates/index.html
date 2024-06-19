@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de Abertura de Chamados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Previsão de Abertura de Chamados</h1>
+    <form method="post">
+        <label for="abertura_id">ID de Abertura:</label>
+        <input type="text" id="abertura_id" name="abertura_id" required><br>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" required><br>
+
+        <label for="problema">Problema:</label>
+        <textarea id="problema" name="problema" required></textarea><br>
+
+        <label for="tipo_equipamento">Tipo de Equipamento:</label>
+        <input type="text" id="tipo_equipamento" name="tipo_equipamento" required><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if results %}
+    <h2>Resultados:</h2>
+    <ul>
+        {% for result in results %}
+        <li>
+            <ul>
+                {% for item in result %}
+                <li>{{ item.label }} ({{ item.description }}): {{ item.probability }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
