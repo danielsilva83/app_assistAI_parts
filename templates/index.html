@@ -5,38 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsão de Abertura de Chamados</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Previsão de Abertura de Chamados</h1>
-    <form method="post">
-        <label for="abertura_id">ID de Abertura:</label>
-        <input type="text" id="abertura_id" name="abertura_id" required><br>
+    <div class="container">
+        <div class="form-container">
+            <h1>Previsão de Abertura de Chamados</h1>
+            <form method="post">
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" name="modelo" required><br>
 
-        <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="modelo" required><br>
+                <label for="problema">Problema:</label>
+                <textarea id="problema" name="problema" required></textarea><br>
 
-        <label for="problema">Problema:</label>
-        <textarea id="problema" name="problema" required></textarea><br>
+                <label for="tipo_equipamento">Tipo de Equipamento:</label>
+                <input type="text" id="tipo_equipamento" name="tipo_equipamento" required><br>
 
-        <label for="tipo_equipamento">Tipo de Equipamento:</label>
-        <input type="text" id="tipo_equipamento" name="tipo_equipamento" required><br>
+                <button type="submit">Enviar</button>
+            </form>
 
-        <button type="submit">Enviar</button>
-    </form>
-
-    {% if results %}
-    <h2>Resultados:</h2>
-    <ul>
-        {% for result in results %}
-        <li>
+            {% if results %}
+            <h2>Resultados:</h2>
             <ul>
-                {% for item in result %}
-                <li>{{ item.label }} ({{ item.description }}): {{ item.probability }}</li>
+                {% for result in results %}
+                <li>
+                    <ul>
+                        {% for item in result %}
+                        <li>{{ item.label }} ({{ item.description }}): {{ item.probability }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
                 {% endfor %}
             </ul>
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="examples-container">
+            <h2>Exemplos:</h2>
+            <ul id="examples-list">
+                {% for example in examples %}
+                <li>
+                    <strong>ID de Abertura:</strong> {{ example['abertura_id'] }} <br>
+                    <strong>Modelo:</strong> {{ example['modelo'] }} <br>
+                    <strong>Problema:</strong> {{ example['problema'] }} <br>
+                    <strong>Tipo de Equipamento:</strong> {{ example['tipo equipamento'] }} <br>
+                    <strong>Código Solicitado:</strong> {{ example['codigo_solicitado'] }} <br>
+                    <strong>Descrição:</strong> {{ example['cod_solic_desc'] }}
+                </li>
+                {% endfor %}
+            </ul>
+            <button id="load-more">Mais Exemplos</button>
+        </div>
+    </div>
+
+    <script>
+        let exampleStart = 50;
+
+        $('#load-more').click(function() {
+            $.get('/more_examples', { start: exampleStart }, function(data) {
+                exampleStart += 50;
+                data.forEach(example => {
+                    $('#examples-list').append(
+                        `<li>
+                            <strong>ID de Abertura:</strong> ${example['abertura_id']} <br>
+                            <strong>Modelo:</strong> ${example['modelo']} <br>
+                            <strong>Problema:</strong> ${example['problema']} <br>
+                            <strong>Tipo de Equipamento:</strong> ${example['tipo equipamento']} <br>
+                            <strong>Código Solicitado:</strong> ${example['codigo_solicitado']} <br>
+                            <strong>Descrição:</strong> ${example['cod_solic_desc']}
+                        </li>`
+                    );
+                });
+            });
+        });
+    </script>
 </body>
 </html>
