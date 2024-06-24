@@ -29,10 +29,12 @@ examples_df = pd.read_csv(examples_csv_path)
 
 # Carregar o modelo
 model1 = load_model('C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\model17.h5')
-def load_examples(start=0, count=50):
-    print( examples_df.iloc[start:start + count].to_dict(orient='records'))
-    return examples_df.iloc[start:start + count].to_dict(orient='records')
-
+#def load_examples(start=0, count=50):
+#    print( examples_df.iloc[start:start + count].to_dict(orient='records'))
+#    return examples_df.iloc[start:start + count].to_dict(orient='records')
+def load_examples(n=7):
+    df = pd.read_csv(examples_csv_path)
+    return df.sample(n).to_dict(orient='records')
 # Função para extrair embeddings dos textos
 def get_bert_embeddings(texts, tokenizer, bert_model, batch_size=32):
     embeddings = []
@@ -111,14 +113,13 @@ def index():
             result = [{"label": label, "probability": prob, "description": desc} for label, prob, desc in zip(labels, probabilities, descriptions)]
             results.append(result)
 
-        return render_template('index.html', results=results)
+        return render_template('index.html', results=results, examples=examples)
 
     return render_template('index.html', results=None, examples=examples)
 
 @app.route('/more_examples', methods=['GET'])
 def more_examples():
-    start = int(request.args.get('start', 0))
-    examples = load_examples(start=start, count=50)
+    examples = load_examples(7)
     return jsonify(examples)
 
 if __name__ == '__main__':

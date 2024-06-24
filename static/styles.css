@@ -5,17 +5,25 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
+    height: 100vh; /* Altura total da viewport */
 }
 
-.form-container {
+.main-content {
     flex: 2;
     margin-right: 20px;
+    overflow-y: auto; /* Permite rolagem na área do formulário e resultados */
+    padding-right: 20px;
+    box-sizing: border-box;
 }
 
 .examples-container {
     flex: 1;
     margin-left: 20px;
+    overflow-y: auto; /* Permite rolagem na lista de exemplos */
+    height: calc(100vh - 60px); /* Altura ajustada para incluir a barra de rolagem */
+    box-sizing: border-box;
 }
 
 form {
