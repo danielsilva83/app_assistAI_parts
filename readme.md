@@ -4,11 +4,11 @@
 
 ## Descrição
 
-Esta aplicação permite prever a categoria de um chamado de suporte técnico com base em dados fornecidos pelo usuário, utilizando um modelo de aprendizado de máquina treinado com BERT para processar descrições textuais. O sistema também fornece uma lista de exemplos de entradas para orientar o usuário.
+Esta aplicação permite prever a peça a ser trocada a partir do problema descrito em um chamado de suporte técnico com base em dados fornecidos pelo usuário, utilizando um modelo de aprendizado de máquina treinado com BERT para processar descrições textuais. O sistema também fornece uma lista de exemplos de entradas para orientar o usuário.
 
 ## Funcionalidades
 
-- Previsão da categoria de um chamado com base nos dados inseridos.
+- Previsão da peça a ser trocada em um chamado com base nos dados inseridos, modelo, problema e tipo de equipamento.
 - Exibição de uma lista de exemplos de chamados para referência.
 - Possibilidade de carregar mais exemplos aleatoriamente.
 
