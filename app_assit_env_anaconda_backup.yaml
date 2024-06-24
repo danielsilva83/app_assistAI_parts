@@ -1,4 +1,4 @@
-name: app_assist_parts
+name: Python application
 channels:
   - conda-forge
   - defaults
