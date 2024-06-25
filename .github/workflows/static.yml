@@ -29,7 +29,7 @@ jobs:
           export FLASK_ENV=production
           python -m flask run &
           sleep 10
-          curl http://127.0.0.1:5000 > templates/index.html  # Certifique-se de que seu app Flask está gerando conteúdo estático
+          curl http://127.0.0.1:5000 > ./templates/index.html  # Certifique-se de que seu app Flask está gerando conteúdo estático
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

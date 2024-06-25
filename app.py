@@ -19,7 +19,7 @@ scaler = joblib.load('./static/scaler17.pkl')
 encoder = joblib.load('./static/label_encoder17.pkl')
 
 # Carregar o CSV com o mapeamento de 'codigo_solicitado' para suas descrições
-csv_path = 'C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\cod_solic3.csv'
+csv_path = './static/cod_solic3.csv'
 code_df = pd.read_csv(csv_path)
 code_to_description = dict(zip(code_df['codigo_solicitado'], code_df['cod_solic_desc']))
 
