@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previsão de Abertura de Chamados</title>
+    <title>Previsão da movimentação de peças a partir dos problemas informados na abertura de chamados.</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="form-container">
-            <h1>Previsão de Abertura de Chamados</h1>
+            <h1>Previsão da movimentação de peças a partir dos problemas informados na abertura de chamados.</h1>
             <form method="post">
+                <label for="abertura_id">ID de Abertura:</label>
+                <input type="text" id="abertura_id" name="abertura_id" required><br>
+
                 <label for="modelo">Modelo:</label>
                 <input type="text" id="modelo" name="modelo" required><br>
 
