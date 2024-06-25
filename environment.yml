@@ -1,7 +1,3 @@
-name: app_assist_parts
-channels:
-  - conda-forge
-  - defaults
 dependencies:
   - absl-py=2.1.0=pyhd8ed1ab_0
   - aiohttp=3.9.5=py310h8d17308_0
