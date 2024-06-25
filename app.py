@@ -15,8 +15,8 @@ tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert_model = BertModel.from_pretrained('bert-base-uncased').to(device)
 
 # Carregar scaler e encoder treinados
-scaler = joblib.load('C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\scaler17.pkl')
-encoder = joblib.load('C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\label_encoder17.pkl')
+scaler = joblib.load('https://github.com/danielsilva83/app_assistAI_parts/blob/main/static/scaler17.pkl')
+encoder = joblib.load('https://github.com/danielsilva83/app_assistAI_parts/blob/main/static/label_encoder17.pkl')
 
 # Carregar o CSV com o mapeamento de 'codigo_solicitado' para suas descrições
 csv_path = 'C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\cod_solic3.csv'
@@ -24,11 +24,11 @@ code_df = pd.read_csv(csv_path)
 code_to_description = dict(zip(code_df['codigo_solicitado'], code_df['cod_solic_desc']))
 
 # Carregar o arquivo de exemplos
-examples_csv_path = 'C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\amostra_exemplo.csv'
+examples_csv_path = 'https://github.com/danielsilva83/app_assistAI_parts/blob/main/static/amostra_exemplo.csv'
 examples_df = pd.read_csv(examples_csv_path)
 
 # Carregar o modelo
-model1 = load_model('C:\\Users\\daniel.silva\\Documents\\cits\\app_assistAI_parts\\static\\model17.h5')
+model1 = load_model('https://github.com/danielsilva83/app_assistAI_parts/blob/main/static/model17.h5')
 #def load_examples(start=0, count=50):
 #    print( examples_df.iloc[start:start + count].to_dict(orient='records'))
 #    return examples_df.iloc[start:start + count].to_dict(orient='records')
