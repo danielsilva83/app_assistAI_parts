@@ -1,6 +1,6 @@
 ## README
 
-# Previsão de Abertura de Chamados
+# Previsão de peça a ser trocada a partir do problema descrito no chamado
 
 ## Descrição
 

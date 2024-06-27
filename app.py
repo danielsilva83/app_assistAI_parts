@@ -29,9 +29,9 @@ examples_df = pd.read_csv(examples_csv_path)
 
 # Carregar o modelo
 model1 = load_model('./static/model17.h5')
-#def load_examples(start=0, count=50):
-#    print( examples_df.iloc[start:start + count].to_dict(orient='records'))
-#    return examples_df.iloc[start:start + count].to_dict(orient='records')
+def load_examples_ini(start=150, count=10):
+    print( examples_df.iloc[start:start + count].to_dict(orient='records'))
+    return examples_df.iloc[start:start + count].to_dict(orient='records')
 def load_examples(n=7):
     df = pd.read_csv(examples_csv_path)
     return df.sample(n).to_dict(orient='records')
@@ -85,7 +85,7 @@ def predict(df, model, numerical_features, text_columns, tokenizer, bert_model, 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    examples = load_examples()
+    examples = load_examples_ini()
     
     if request.method == 'POST':
         modelo = request.form['modelo']
