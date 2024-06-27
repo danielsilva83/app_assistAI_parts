@@ -15,8 +15,8 @@ spacy.prefer_gpu()
 nlp = spacy.load("pt_core_news_sm")
 
 # Carregar scaler e encoder treinados
-scaler_path = './static/preprocessor_spacy2.pkl'
-encoder_path = './static/label_encoder_spacy2.pkl'
+scaler_path = './static/preprocessor_spacy4.pkl'
+encoder_path = './static/label_encoder_spacy4.pkl'
 scaler = joblib.load(scaler_path)
 encoder = joblib.load(encoder_path)
 
@@ -30,7 +30,7 @@ examples_csv_path = './static/amostra_exemplo.csv'
 examples_df = pd.read_csv(examples_csv_path)
 
 # Carregar o modelo
-model1 = load_model('./static/modelo_spacy2.h5')
+model1 = load_model('./static/modelo_spacy4.h5')
 def load_examples(start=0, count=50):
     print( examples_df.iloc[start:start + count].to_dict(orient='records'))
     return examples_df.iloc[start:start + count].to_dict(orient='records')
@@ -47,10 +47,7 @@ def preprocess_input(df, text_columns, scaler):
     for col in text_columns:
         df[col] = df[col].apply(preprocess_text)
 
-    print("df shape: ", df.shape)
-
     X_final = scaler.transform(df)
-    print("X_final shape: ", X_final.shape)
     
     return X_final
 
@@ -69,14 +66,12 @@ def index():
     examples = load_examples()
     
     if request.method == 'POST':
-        abertura_id = request.form['abertura_id']
         modelo = request.form['modelo']
         problema = request.form['problema']
         tipo_equipamento = request.form['tipo_equipamento']
 
         # Criar o DataFrame com os dados de entrada
         data = {
-            'abertura_id': [abertura_id],
             'modelo': [modelo],
             'problema': [problema],
             'tipo_equipamento': [tipo_equipamento]
